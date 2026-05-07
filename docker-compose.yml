@@ -1,0 +1,12 @@
+
+services:
+  banco-dados:
+    image: postgres:16
+    container_name: postgres-automacoes
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=automacoes_db
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
