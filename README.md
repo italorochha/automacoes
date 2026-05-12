@@ -1,40 +1,46 @@
-# Motor de Extracao Autonomo (Web Scraper & API REST)
+# Automação de Processamento de Dados (Java & Spring Boot)
 
-Sistema backend desenvolvido em Java com Spring Boot para execucao de rotinas automatizadas de web scraping, persistencia de dados e distribuicao via API REST.
+[Português] | [English](#english)
 
-## Arquitetura e Tecnologias
+## 🇧🇷 Português
 
-O projeto foi estruturado utilizando os principios de responsabilidade unica e separacao de conceitos.
+### Descrição do Projeto
+Este sistema foi desenvolvido para automatizar a rotina de extração, processamento e atualização de dados em planilhas corporativas da **Atual Auto Peças**. O objetivo principal é garantir a integridade dos dados de estoque e compras, eliminando falhas manuais e otimizando o tempo de operação.
 
-* **Linguagem:** Java 21+
-* **Framework Principal:** Spring Boot 3+
-* **Web Scraping:** Selenium WebDriver (Edge Headless)
-* **Persistencia:** Spring Data JPA / Hibernate
-* **Banco de Dados:** PostgreSQL (via Docker)
-* **Manipulacao de Arquivos:** Apache POI (Geracao de planilhas XLSX)
+O projeto evoluiu de um script procedural simples para uma aplicação robusta utilizando o ecossistema **Spring**.
 
-## Fluxo de Execucao
+### Arquitetura e Tecnologias
+Para garantir um código limpo e de fácil manutenção, utilizei os princípios **SOLID** e a separação em camadas:
+- **Modelo (Model):** Estruturas de dados imutáveis (Java Records).
+- **Infraestrutura (Infra):** Manipulação de arquivos físicos utilizando **Apache POI**.
+- **Negócio (Business):** Lógica de processamento e validação isolada.
+- **Spring Boot Scheduler:** Automação de tarefas agendadas via expressões Cron.
 
-1. O servico de scraping (`ScraperService`) e acionado via contexto do Spring.
-2. O Selenium WebDriver inicia uma instancia invisivel do navegador, navega pelas paginas alvo e extrai os dados estruturados.
-3. Os dados sao convertidos em entidades de dominio e persistidos no PostgreSQL de forma transacional.
-4. A API REST (`CitacaoController`) expoe os dados armazenados em formato JSON.
+### Funcionalidades
+- **Extração Automática:** Leitura de arquivos `.xlsx` protegendo a memória do sistema (Try-with-resources).
+- **Agendamento Profissional:** Execução automática em horários configuráveis.
+- **Logs de Auditoria:** Monitoramento completo da execução via Logger profissional (SLF4J/Logback).
 
-## Como Executar o Projeto
+---
 
-### Pre-requisitos
+## 🇺🇸 English <a name="english"></a>
 
-* JDK 21 ou superior
-* Docker e Docker Compose
-* Maven
+### Project Description
+This system was developed to automate the extraction, processing, and updating of data in corporate spreadsheets for **Atual Auto Peças**. The main goal is to ensure the integrity of inventory and purchasing data, eliminating manual errors and optimizing operational time.
 
-### Passos para execucao
+The project evolved from a simple procedural script to a robust application using the **Spring** ecosystem.
 
-1. Suba a infraestrutura de banco de dados:
-docker-compose up -d
+### Architecture and Technologies
+To ensure clean and maintainable code, I applied **SOLID** principles and layered architecture:
+- **Model:** Immutable data structures (Java Records).
+- **Infrastructure:** Physical file manipulation using **Apache POI**.
+- **Business:** Isolated processing and validation logic.
+- **Spring Boot Scheduler:** Automated task scheduling via Cron expressions.
 
-2. Execute a aplicacao via Maven Wrapper:
-./mvnw clean spring-boot:run
+### Key Features
+- **Automatic Extraction:** Reading `.xlsx` files with system memory protection (Try-with-resources).
+- **Professional Scheduling:** Automatic execution at configurable times.
+- **Audit Logs:** Full execution monitoring via professional Logger (SLF4J/Logback).
 
-A API estara acessivel localmente na porta 8080.
-A rota principal de consulta e: `GET http://localhost:8080/api/citacoes`
+---
+**Desenvolvido por / Developed by:** Italo Rocha de Almeida Ferreira
